@@ -1,3 +1,6 @@
+#day 3:
+-half completed hourly weather
+
 #day 2:
 -implimented css grid and current weather with js and API call
 
