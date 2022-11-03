@@ -7,17 +7,8 @@ const getCurrentWeatherData = async () => {
 }
 
 const formatTemerature = (temp) => `${temp?.toFixed(1)}°`;
-const createIconUrl = (icon) => `http://openweathermap.org/img/wn/${icon}@2x.png`;
+const createIconUrl = (icon) => `https://openweathermap.org/img/wn/${icon}@2x.png`;
 const timeIndent = (time) => time.slice(0,5);
-
-const loadCurrentForecast = ({name ,main:{temp, temp_max, temp_min}, weather:[{description}]}) =>{
-    const currentForecastElement = document.querySelector("#current-forecast")
-    currentForecastElement.querySelector(".cityName").textContent = name;
-    currentForecastElement.querySelector(".temprature").textContent = formatTemerature(temp);
-    currentForecastElement.querySelector(".description").textContent = description;
-    currentForecastElement.querySelector(".max-temp").textContent = `H: ${formatTemerature(temp_max)}`;
-    currentForecastElement.querySelector(".min-temp").textContent = `L: ${formatTemerature(temp_min)}`;
-}
 
 const getHourlyForecastData = async({name : city}) => {
     const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIkey}&units=metric`)
@@ -28,11 +19,20 @@ const getHourlyForecastData = async({name : city}) => {
     }) 
 }
 
+const loadCurrentForecast = ({name ,main:{temp, temp_max, temp_min}, weather:[{description}]}) =>{
+    const currentForecastElement = document.querySelector("#current-forecast")
+    currentForecastElement.querySelector(".cityName").textContent = name;
+    currentForecastElement.querySelector(".temprature").textContent = formatTemerature(temp);
+    currentForecastElement.querySelector(".description").textContent = description;
+    currentForecastElement.querySelector(".max-temp").textContent = `H: ${formatTemerature(temp_max)}`;
+    currentForecastElement.querySelector(".min-temp").textContent = `L: ${formatTemerature(temp_min)}`;
+}
+
 const loadHourlyForecast = (hourlyForecast) => {
     let dataFor12Hours = hourlyForecast.slice(1,13);
     const hourlyContainer = document.querySelector(".hourly-container");
     let innerHTMLString = ``;
-
+    
     for(let {temp, icon, dt_txt} of dataFor12Hours){
         let time = dt_txt.split(" ")[1]
         innerHTMLString += `<article>
@@ -44,11 +44,23 @@ const loadHourlyForecast = (hourlyForecast) => {
     hourlyContainer.innerHTML = innerHTMLString;  
 }
 
+const loadFeelsLike = ({main:{feels_like}}) => {
+    const feelsLikeElement = document.querySelector("#feels-like");
+    feelsLikeElement.querySelector(".feels-like-temp").textContent = formatTemerature(feels_like);
+}
+
+const loadHumidity = ({main:{humidity}}) => {
+    const humidityElement = document.querySelector("#humidity");
+    humidityElement.querySelector(".humidity-value").textContent = `${humidity} %`;
+}
+
 document.addEventListener("DOMContentLoaded" , async () => {
     const currentWeather = await getCurrentWeatherData();
     loadCurrentForecast(currentWeather);
     const hourlyForecast = await getHourlyForecastData(currentWeather);
     loadHourlyForecast(hourlyForecast);
+    loadFeelsLike(currentWeather);
+    loadHumidity(currentWeather);
     
 });
 

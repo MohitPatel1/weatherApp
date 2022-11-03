@@ -45,9 +45,6 @@ body{
     padding: var(--spacing-regular);
 }
 
-.container > article{
-}
-
 /* current forecast related styles */
 
 #current-forecast{
@@ -110,10 +107,12 @@ width: min-content; */
 
 #feels-like{
     grid-area: feelslike;
+    text-align: center;
 }
 
 /* humidity related styles */
 
 #humidity{
     grid-area: humidity;
+    text-align: center;
 }

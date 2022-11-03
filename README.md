@@ -1,5 +1,7 @@
 #day 4:
 -hourly weather completed.
+-added feels like and humidity
+-hosted to github pages
 
 #day 3:
 -half completed hourly weather
