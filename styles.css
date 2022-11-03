@@ -70,8 +70,6 @@ body{
     text-transform: capitalize;
 }
 
-
-
 /* hourly forecast related styles */
 
 #hourly-forecast{
@@ -79,9 +77,6 @@ body{
     text-align: center;
 }
 
-#hourly-forecast h2{
-    margin:0;
-}
 
 #hourly-forecast .hourly-container{
     display: grid;
@@ -90,6 +85,19 @@ body{
     grid-auto-columns: minmax(100px , 1fr);
     overflow-x: auto;
     scroll-behavior: smooth;
+}
+
+#hourly-forecast .hourly-container .time{
+    margin:0;
+}
+
+#hourly-forecast .hourly-container .icon{
+    /* height: min-content;   
+width: min-content; */
+    object-fit: contain;
+}
+#hourly-forecast .hourly-container .hourly-temp{
+    font-weight: var(--bold);
 }
 
 /* five day forecast related styles */

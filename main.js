@@ -7,6 +7,8 @@ const getCurrentWeatherData = async () => {
 }
 
 const formatTemerature = (temp) => `${temp?.toFixed(1)}°`;
+const createIconUrl = (icon) => `http://openweathermap.org/img/wn/${icon}@2x.png`;
+const timeIndent = (time) => time.slice(0,5);
 
 const loadCurrentForecast = ({name ,main:{temp, temp_max, temp_min}, weather:[{description}]}) =>{
     const currentForecastElement = document.querySelector("#current-forecast")
@@ -20,25 +22,25 @@ const loadCurrentForecast = ({name ,main:{temp, temp_max, temp_min}, weather:[{d
 const getHourlyForecastData = async({name : city}) => {
     const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIkey}&units=metric`)
     const data = await response.json();
-    console.log(data);
+    return data.list.map(forecast =>{
+        const {main:{temp,temp_max ,temp_min}, dt , dt_txt, weather:[{description, icon}] } = forecast;
+        return {temp, temp_max, temp_min, dt, dt_txt, description, icon}
+    }) 
 }
 
-const createIconUrl = (icon) => `http://openweathermap.org/img/wn/${icon}@2x.png`
-
 const loadHourlyForecast = (hourlyForecast) => {
-    const hourlyContainer = document.querySelector(".hourly-container");
     let dataFor12Hours = hourlyForecast.slice(1,13);
+    const hourlyContainer = document.querySelector(".hourly-container");
     let innerHTMLString = ``;
 
-    for({temp, icon, dt_txt} of dataFor12Hours){
+    for(let {temp, icon, dt_txt} of dataFor12Hours){
+        let time = dt_txt.split(" ")[1]
         innerHTMLString += `<article>
-        <h2 class="time>${dt_text.split(" ")[1]}</h2>
-        <img class="icon" src="${createIconUrl(icon)}">icon
+        <h2 class="time">${timeIndent(time)}</h2>
+        <img class= "icon" src="${createIconUrl(icon)}"/> 
         <p class="hourly-temp">${formatTemerature(temp)}</p>
     </article>`
     }
-
-
     hourlyContainer.innerHTML = innerHTMLString;  
 }
 
@@ -47,6 +49,8 @@ document.addEventListener("DOMContentLoaded" , async () => {
     loadCurrentForecast(currentWeather);
     const hourlyForecast = await getHourlyForecastData(currentWeather);
     loadHourlyForecast(hourlyForecast);
+    
 });
 
+// console.log(hourlyForecast);
 // console.log(getCurrentWeatherData());

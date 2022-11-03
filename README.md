@@ -1,3 +1,6 @@
+#day 4:
+-hourly weather completed
+
 #day 3:
 -half completed hourly weather
 
