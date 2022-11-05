@@ -101,7 +101,30 @@ width: min-content; */
 
 #five-day-forecast{
     grid-area: fiveday;
+    text-align: center;
 }
+
+#five-day-forecast .five-day-forecast-container{
+    display: grid;
+    grid-auto-flow: row;
+    grid-template: auto / repeat(4 , 1fr);
+    gap: var(--spacing-regular);
+}
+
+.five-day-forecast-container .min-temp{
+    font-weight: var(--semi-bold) ;
+    opacity: 50%;
+}
+.five-day-forecast-container .max-temp{
+    font-weight: var(--semi-bold) ;
+}
+
+.five-day-forecast-container .icon{
+    max-width: fit-content;
+    max-height: fit-content;
+    object-fit: contain;
+}
+
 
 /* feels like related styles */
 

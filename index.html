@@ -10,6 +10,7 @@
 </head>
 <body>
     <main class="container">
+<!-- current forecast -->
         <article id="current-forecast">
             <h1 class="cityName">City name</h1>
             <p class="temprature">Temp</p>
@@ -17,29 +18,29 @@
             <p class="max-temp">High</p>
             <p class="min-temp">Low</p>
         </article>
-
+<!-- hourly forecast -->
         <article id="hourly-forecast">
             <h1>Hourly forecast</h1>
             <section class="hourly-container">
             </section>
         </article>
-
+<!-- five day forecast -->
         <article id="five-day-forecast">
             <h1>5 day forecast</h1>
-            <h2>Today</h2>
-            <p>icon</p>
-            <p>high</p>
-            <p>low</p>
-
-            <h2>Yesterday</h2>
-            <p>icon</p>
-            <p>high</p> 
-            <p>low</p>
+            <section class="five-day-forecast-container">
+                <h3 class="day-of-forecast">Today</h3>
+                <img class="icon" src="">
+                <p class="min-temp">low</p>
+                <p class="max-temp">high</p>
+            </section>
         </article>
+<!-- feels like -->
         <article id="feels-like">
             <h1>Feels like</h1>
             <p class="feels-like-temp">temp</p>
         </article>
+
+<!-- humidity -->
         <article id="humidity">
             <h1>Humidity</h1>
             <p class="humidity-value">value</p>
