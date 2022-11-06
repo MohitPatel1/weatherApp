@@ -1,5 +1,8 @@
 > live link : https://mohitpatel1.github.io/weatherApp/
 
+#day 5: 
+-completed 5 day forecast
+
 #day 4:
 -hourly weather completed.
 -added feels like and humidity
