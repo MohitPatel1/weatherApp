@@ -114,15 +114,14 @@ width: min-content; */
 
 .per-day-forecast-container .min-temp{
     font-weight: var(--semi-bold) ;
-    opacity: 50%;
+    opacity: 75%;
 }
 .per-day-forecast-container .max-temp{
     font-weight: var(--semi-bold) ;
 }
 
 .per-day-forecast-container .day-of-forecast{
-    justify-items: left;
-    /* not working */
+    justify-self: start;
 }
 
 .per-day-forecast-container .icon{
