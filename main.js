@@ -1,18 +1,19 @@
 const APIkey = "473fcbe90fdb1548ba72bb972c691feb";
 
+const getCitiesUsingGeoLocation = async(searchText) =>{
+    const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchText}&limit=5&appid=${APIkey}`);
+    // console.log(response.json());
+    return response.json();
+}
+
 const getCurrentWeatherData = async () => {
     const cityName = "ahmedabad";
     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIkey}&units=metric`);
-    return response.json()
+    return response.json();
 }
 
-const formatTemerature = (temp) => `${temp?.toFixed(1)}°`;
-const createIconUrl = (icon) => `https://openweathermap.org/img/wn/${icon}@2x.png`;
-
-const daysOfTheWeek = ["Sun", "Mon" , "Tue" , "Wed" ,"Thu" , "Fri" , "Sat"];
-
 const getHourlyForecastData = async({name : city}) => {
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIkey}&units=metric`)
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIkey}&units=metric`);
     const data = await response.json();
     return data.list.map(forecast =>{
         const {main:{temp,temp_max ,temp_min}, dt , dt_txt, weather:[{description, icon}] } = forecast;
@@ -20,12 +21,23 @@ const getHourlyForecastData = async({name : city}) => {
     }) 
 }
 
+const debounce = debounce((event) => onSearchChange(event));
+
+const onSearchChange = (event) => {
+    let { value } = event.target;
+    console.log(value);
+    let p = getCitiesUsingGeoLocation(value);
+    // console.log(p);
+}
+
+const formatTemerature = (temp) => `${temp?.toFixed(1)}°`;
+const createIconUrl = (icon) => `https://openweathermap.org/img/wn/${icon}@2x.png`;
+const daysOfTheWeek = ["Sun", "Mon" , "Tue" , "Wed" ,"Thu" , "Fri" , "Sat"];
 const dailyIcon = (iconFrontList) => {
     let counts = [];
     let maxCount = 0; 
     let maxCountIcon = "";
     for (word of iconFrontList){
-        console.log(word);
         if(counts[word] === undefined){ 
             counts[word] = 1;  
          }else{                
@@ -126,6 +138,8 @@ document.addEventListener("DOMContentLoaded" , async () => {
     loadFiveDayForecast(hourlyForecast);
     loadFeelsLike(currentWeather);
     loadHumidity(currentWeather);
+    const searchInput = document.querySelector("#search");
+    searchInput.addEventListener("input", debounce);
     
 });
 

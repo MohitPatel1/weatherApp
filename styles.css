@@ -22,6 +22,7 @@ body{
 
     --font-small: 0.5rem;
     --font-regular: 1rem;
+    --font-medium: 1.5rem;
     --font-large: 2rem;
     --font-xl: 4rem;
     
@@ -31,6 +32,7 @@ body{
     display: grid;
     grid-template-columns: repeat(2 , 1fr);
     grid-template-areas: 
+    "search search"
     "current current"
     "hourly hourly"
     "fiveday fiveday"
@@ -43,6 +45,19 @@ body{
     border: 1px solid;
     border-radius: var(--spacing-regular);
     padding: var(--spacing-regular);
+}
+
+/* search city */
+#search-city{
+    grid-area: search;
+    padding: 0;
+    border: 0;
+}
+
+#search-city input{
+    font-size: var(--font-medium);
+    width: 100%;
+    border-radius: var(--spacing-less);
 }
 
 /* current forecast related styles */
