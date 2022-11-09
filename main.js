@@ -27,7 +27,6 @@ const onSearchChange = (event) => {
     let { value } = event.target;
     console.log(value);
     let p = getCitiesUsingGeoLocation(value);
-    // console.log(p);
 }
 
 const formatTemerature = (temp) => `${temp?.toFixed(1)}°`;
@@ -79,8 +78,7 @@ const loadHourlyForecast = ({main:{temp : tempNow} , weather:[{icon : iconNow}]}
         <p class="hourly-temp">${formatTemerature(temp)}</p>
         </article>`
     }
-    hourlyContainer.innerHTML = innerHTMLString;  
-    // console.log(hourlyForecast);
+    hourlyContainer.innerHTML = innerHTMLString;
 }
 
 const loadFiveDayForecast = (hourlyForecast) =>{
@@ -142,5 +140,3 @@ document.addEventListener("DOMContentLoaded" , async () => {
     searchInput.addEventListener("input", debounce);
     
 });
-
-// console.log(getCurrentWeatherData());
