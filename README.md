@@ -1,6 +1,9 @@
 > live link : https://mohitpatel1.github.io/weatherApp/
 
 # day 6:
+- looked into the function concepts again, to understand debounce.
+
+# day 6:
 - added today in 5 day forecast and, now in hourly forecast
 
 # day 5: 
@@ -23,3 +26,4 @@
 # Task at hand;
 - time vise icon of 5 day forecast, day and night theme
 - search city name
+- json functions, json.parse , json.stringify
