@@ -3,13 +3,13 @@ const APIkey = "473fcbe90fdb1548ba72bb972c691feb";
 // getting json via APIs
 
 const getCitiesUsingGeoLocation = async(searchText) =>{
-    const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchText},{state code},{country code}&limit=5&appid=${APIkey}`);
+    const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchText}&limit=5&appid=${APIkey}`);
     // http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
     return response.json();
 }
 
 const getCurrentWeatherData = async ({lat , lon , name : cityName}) => {
-    const cityName = "ahmedabad";
+    let cityName = "ahmedabad";
     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIkey}&units=metric`);
     return response.json();
 }
@@ -33,7 +33,7 @@ function debounce(func , delay) {
     return (...args) => {
         clearTimeout(timer);
         timer = setTimeout(() => {
-            func.apply(this,args)
+            func.apply(this, ...args);
         } ,delay)
     }
 } 
@@ -43,9 +43,9 @@ const onSearchChange = async (event) => {
         selectedCityText = null;
         selectedCity = "";
     }
+    let option = ""
     if(value && (selectedCityText !== value)){
         let listOfCities = await getCitiesUsingGeoLocation(value);
-        let option = ""
         for ( {lat , lon , name , state , country} of listOfCities){
             option += `<option data-city-details='${JSON.stringify({lat , lon , name})}' ${name}, ${state}, ${country}"></option>`
         }
@@ -58,7 +58,7 @@ const debounceSearch = debounce((event) => onSearchChange(event), 300); // delay
 const handleCitySelection = (event) => {
     selectedCityText = event.target.value ;
     let options = document.querySelector("#cities > option");
-    console.log(options);
+    // console.log(options);
     if (options?.length) {
         let selectedOption = Array.from(options).find(opt => opt.value === selectedCityText);
         selectedCity = JSON.parse(selectedOption.getAttribute("data-city-details"));
