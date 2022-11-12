@@ -38,9 +38,6 @@ function debounce(func) {
     }
 } 
 
-
-
-
 const onSearchChange = async (event) => {
     let { value } = event.target;
     if(!value){
@@ -69,10 +66,10 @@ const handleCitySelection = (event) => {
         let selectedOption = Array.from(options).find(opt => opt.value === selectedCityText);
         selectedCity = JSON.parse(selectedOption.getAttribute("data-city-details"));
         console.log(selectedCity);
-
     }
     loadData();
-} ;
+    
+};
 
 // function definations 
 

@@ -2,7 +2,7 @@
 
 # day 7:
 - looked into the function concepts again, to understand debounce.
-- completed search property 
+- completed search box
 - solved bugs
 
 # day 6:
