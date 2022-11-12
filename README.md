@@ -1,7 +1,9 @@
 > live link : https://mohitpatel1.github.io/weatherApp/
 
-# day 6:
+# day 7:
 - looked into the function concepts again, to understand debounce.
+- completed search property 
+- solved bugs
 
 # day 6:
 - added today in 5 day forecast and, now in hourly forecast

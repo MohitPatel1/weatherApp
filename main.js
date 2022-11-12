@@ -3,14 +3,14 @@ const APIkey = "473fcbe90fdb1548ba72bb972c691feb";
 // getting json via APIs
 
 const getCitiesUsingGeoLocation = async(searchText) =>{
-    const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchText},{state code},{country code}&limit=5&appid=${APIkey}`);
-    // http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
+    const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchText}&limit=5&appid=${APIkey}`);
     return response.json();
 }
-
+const cityName = "ahmedabad";
 const getCurrentWeatherData = async ({lat , lon , name : cityName}) => {
-    const cityName = "ahmedabad";
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIkey}&units=metric`);
+    const url = (lat && lon) ? `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APIkey}&units=metric`: `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIkey}&units=metric`;
+    const response = await fetch(url);
+    console.log(response);
     return response.json();
 }
 
@@ -28,15 +28,19 @@ const getHourlyForecastData = async({name : city}) => {
 let selectedCityText;
 let selectedCity;
 
-function debounce(func , delay) {
+function debounce(func) {
     let timer;
     return (...args) => {
         clearTimeout(timer);
         timer = setTimeout(() => {
             func.apply(this,args)
-        } ,delay)
+        } ,500)
     }
 } 
+
+
+
+
 const onSearchChange = async (event) => {
     let { value } = event.target;
     if(!value){
@@ -45,25 +49,29 @@ const onSearchChange = async (event) => {
     }
     if(value && (selectedCityText !== value)){
         let listOfCities = await getCitiesUsingGeoLocation(value);
-        let option = ""
-        for ( {lat , lon , name , state , country} of listOfCities){
-            option += `<option data-city-details='${JSON.stringify({lat , lon , name})}' ${name}, ${state}, ${country}"></option>`
+        console.log(listOfCities);
+        let options = ""
+        for (let {lat , lon , name , state , country} of listOfCities){
+            options += `<option data-city-details='${JSON.stringify({lat , lon , name})}' value="${name}, ${state}, ${country}"></option>`
         }
+        document.querySelector("#cities").innerHTML = options;
     }
-    cityOptions = document.querySelector("#cities").innerHTML = option;
 }
 
-const debounceSearch = debounce((event) => onSearchChange(event), 300); // delay = 300 ms
+const debounceSearch = debounce((event) => onSearchChange(event)); // delay = 300 ms
 
 const handleCitySelection = (event) => {
     selectedCityText = event.target.value ;
-    let options = document.querySelector("#cities > option");
+    console.log(selectedCityText);
+    let options = document.querySelectorAll("#cities > option");
     console.log(options);
     if (options?.length) {
         let selectedOption = Array.from(options).find(opt => opt.value === selectedCityText);
         selectedCity = JSON.parse(selectedOption.getAttribute("data-city-details"));
         console.log(selectedCity);
+
     }
+    loadData();
 } ;
 
 // function definations 
@@ -90,6 +98,16 @@ const dailyIcon = (iconFrontList) => {
 }
 
 // loading content 
+
+const loadData = async() => {
+    const currentWeather = await getCurrentWeatherData(selectedCity);
+    loadCurrentForecast(currentWeather);
+    const hourlyForecast = await getHourlyForecastData(currentWeather);
+    loadHourlyForecast(currentWeather, hourlyForecast);
+    loadFiveDayForecast(hourlyForecast);
+    loadFeelsLike(currentWeather);
+    loadHumidity(currentWeather);
+}
 
 const loadCurrentForecast = ({name ,main:{temp, temp_max, temp_min}, weather:[{description}]}) =>{
     const currentForecastElement = document.querySelector("#current-forecast")
@@ -172,16 +190,7 @@ const loadHumidity = ({main:{humidity}}) => {
 // DOM content loaded
 
 document.addEventListener("DOMContentLoaded" , async () => {
-    const currentWeather = await getCurrentWeatherData();
-    loadCurrentForecast(currentWeather);
-    const hourlyForecast = await getHourlyForecastData(currentWeather);
-    loadHourlyForecast(currentWeather, hourlyForecast);
-    loadFiveDayForecast(hourlyForecast);
-    loadFeelsLike(currentWeather);
-    loadHumidity(currentWeather);
-    
     const searchInput = document.querySelector("#search");
     searchInput.addEventListener("input", debounceSearch);
     searchInput.addEventListener("change", handleCitySelection);
-
 });
