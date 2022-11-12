@@ -44,6 +44,7 @@ const onSearchChange = async (event) => {
         selectedCityText = null;
         selectedCity = "";
     }
+    let option = ""
     if(value && (selectedCityText !== value)){
         let listOfCities = await getCitiesUsingGeoLocation(value);
         console.log(listOfCities);
