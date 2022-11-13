@@ -31,6 +31,7 @@
 
 # Task at hand;
 - time vise icon of 5 day forecast, day and night theme
+- set previuosly selected city to session storage/ local storage.
 - give city name the city user selects from search box
 - align items vertically for humidity, hourly forecast and feels like for wider screens
 - json functions, json.parse , json.stringify
