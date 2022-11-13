@@ -1,8 +1,12 @@
 > live link : https://mohitpatel1.github.io/weatherApp/
 
+# day 8:
+- made website responsive for screen size greater than 800px
+
 # day 7:
 - looked into the function concepts again, to understand debounce.
 - completed search box
+- initial city set to ahmedabad
 - solved bugs
 
 # day 6:
@@ -27,5 +31,6 @@
 
 # Task at hand;
 - time vise icon of 5 day forecast, day and night theme
-- search city name
+- give city name the city user selects from search box
+- align items vertically for humidity, hourly forecast and feels like for wider screens
 - json functions, json.parse , json.stringify

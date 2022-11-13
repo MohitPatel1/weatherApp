@@ -5,10 +5,13 @@
 /* moblile first approach */
 
 body{
-    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    width: 400px;
-    margin: auto;
+    max-width: calc(100% - (2 * var(--spacing-regular)));
+    margin: var(--spacing-regular) auto;
+    /* margin-top: var(--spacing-regular);
+    margin-bottom: var(--spacing-regular);
+    margin-right: clamp(16px, auto);
+    margin-left: clamp(16px, auto); */
 }
 
 :root{
@@ -38,7 +41,7 @@ body{
     "fiveday fiveday"
     "feelslike humidity";
     gap: var(--spacing-regular);
-
+    align-items: center;
 }
 
 .container , .container > article {
@@ -87,6 +90,7 @@ body{
 #hourly-forecast{
     grid-area: hourly;
     text-align: center;
+    height: 100%;
 }
 
 
@@ -117,6 +121,7 @@ width: min-content; */
 #five-day-forecast{
     grid-area: fiveday;
     text-align: center;
+    height: 100%;
 }
 
 #five-day-forecast .per-day-forecast-container{
@@ -140,8 +145,8 @@ width: min-content; */
 }
 
 .per-day-forecast-container .icon{
-    max-width: fit-content;
-    max-height: fit-content;
+    /* max-width: fit-content;
+    max-height: fit-content; */
     object-fit: contain;
 }
 
@@ -151,6 +156,7 @@ width: min-content; */
 #feels-like{
     grid-area: feelslike;
     text-align: center;
+    height: 100%;
 }
 
 /* humidity related styles */
@@ -158,4 +164,19 @@ width: min-content; */
 #humidity{
     grid-area: humidity;
     text-align: center;
+    height: 100%;
+}
+
+@media(width >= 800px){
+    .container{
+        grid-template-columns: repeat(4 , 1fr);
+        grid-template-areas: 
+        "search search search search"
+        "current current current current"
+        "hourly hourly fiveday fiveday"
+        "feelslike humidity fiveday fiveday";
+    }
+    body{
+        max-width: calc(800px - (2 * var(--spacing-regular))); /* for margin in both sides */
+    }
 }
