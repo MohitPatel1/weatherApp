@@ -8,10 +8,8 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     max-width: calc(100% - (2 * var(--spacing-regular)));
     margin: var(--spacing-regular) auto;
-    /* margin-top: var(--spacing-regular);
-    margin-bottom: var(--spacing-regular);
-    margin-right: clamp(16px, auto);
-    margin-left: clamp(16px, auto); */
+    color: var(--text-color);
+    background-color: var(--background-color);
 }
 
 :root{
@@ -28,6 +26,9 @@ body{
     --font-medium: 1.5rem;
     --font-large: 2rem;
     --font-xl: 4rem;
+
+    --text-color: hsl(240deg, 80% , 5%);
+    --background-color: hsl(240deg, 95% , 100%);
     
 }
 
@@ -55,6 +56,11 @@ body{
     grid-area: search;
     padding: 0;
     border: 0;
+}
+
+#search-city #cities > datalist{
+    transition: 0.6 ease;
+    -webkit-transition: 0.6 ease;
 }
 
 #search-city input{
@@ -178,5 +184,17 @@ width: min-content; */
     }
     body{
         max-width: calc(800px - (2 * var(--spacing-regular))); /* for margin in both sides */
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        --background-color: hsl(240deg, 80% , 5%);
+        --text-color: hsl(240deg, 95% , 100%);
+    }
+
+    body.light-theme{
+        --text-color: hsl(240deg, 80% , 5%);
+        --background-color: hsl(240deg, 95% , 100%);
     }
 }

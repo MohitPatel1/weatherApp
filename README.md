@@ -34,4 +34,5 @@
 - set previuosly selected city to session storage/ local storage.
 - give city name the city user selects from search box
 - align items vertically for humidity, hourly forecast and feels like for wider screens
+- change search city text in dark mode
 - json functions, json.parse , json.stringify
