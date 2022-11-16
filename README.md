@@ -39,3 +39,4 @@
 - align items vertically for humidity, hourly forecast and feels like for wider screens
 - change search city text in dark mode
 - json functions, json.parse , json.stringify
+- have position relative dark theme button

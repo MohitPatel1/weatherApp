@@ -9,12 +9,12 @@ body{
     max-width: calc(100% - (2 * var(--spacing-regular)));
     margin: var(--spacing-regular) auto;
     color: var(--text-color);
-    background-color: var(--background-color);
+    background-color: var(--background-color);   
 }
 
-body.dark-theme{
-    --background-color: hsl(240deg, 80% , 5%);
-    --text-color: hsl(240deg, 95% , 100%);
+.light-theme{
+    --text-color: hsl(240deg, 80% , 5%);
+    --background-color: hsl(240deg, 95% , 100%);
 }
 
 :root{
@@ -32,8 +32,8 @@ body.dark-theme{
     --font-large: 2rem;
     --font-xl: 4rem;
 
-    --text-color: hsl(240deg, 80% , 5%);
-    --background-color: hsl(240deg, 95% , 100%);
+    --background-color: hsl(240deg, 80% , 5%);
+    --text-color: hsl(240deg, 95% , 100%);
 
 }
 
@@ -198,8 +198,14 @@ width: min-content; */
         --text-color: hsl(240deg, 95% , 100%);
     }
 
-    body.light-theme{
+    /* body.light-theme{
         --text-color: hsl(240deg, 80% , 5%);
         --background-color: hsl(240deg, 95% , 100%);
     }
+    
+    body.dark-theme{
+        --background-color: hsl(240deg, 80% , 5%);
+        --text-color: hsl(240deg, 95% , 100%);
+    }
+     */
 }
