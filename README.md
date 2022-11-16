@@ -1,5 +1,8 @@
 > live link : https://mohitpatel1.github.io/weatherApp/
 
+# day 10:
+- optimized on the GOD level, toggles theme without even checking prefered theme, you shoud really see the diffrance between two commits.
+
 # day 9:
 - a wow dark theme implemented, WoW!
 

@@ -191,21 +191,3 @@ width: min-content; */
         max-width: calc(800px - (2 * var(--spacing-regular))); /* for margin in both sides */
     }
 }
-
-@media (prefers-color-scheme: dark) {
-    body {
-        --background-color: hsl(240deg, 80% , 5%);
-        --text-color: hsl(240deg, 95% , 100%);
-    }
-
-    /* body.light-theme{
-        --text-color: hsl(240deg, 80% , 5%);
-        --background-color: hsl(240deg, 95% , 100%);
-    }
-    
-    body.dark-theme{
-        --background-color: hsl(240deg, 80% , 5%);
-        --text-color: hsl(240deg, 95% , 100%);
-    }
-     */
-}
