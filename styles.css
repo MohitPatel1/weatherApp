@@ -12,6 +12,11 @@ body{
     background-color: var(--background-color);
 }
 
+body.dark-theme{
+    --background-color: hsl(240deg, 80% , 5%);
+    --text-color: hsl(240deg, 95% , 100%);
+}
+
 :root{
     --spacing-more: 32px;
     --spacing-less: 8px;
@@ -29,7 +34,7 @@ body{
 
     --text-color: hsl(240deg, 80% , 5%);
     --background-color: hsl(240deg, 95% , 100%);
-    
+
 }
 
 .container{
