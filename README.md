@@ -1,5 +1,8 @@
 > live link : https://mohitpatel1.github.io/weatherApp/
 
+# day 9:
+- a wow dark theme implemented, WoW!
+
 # day 8:
 - made website responsive for screen size greater than 800px
 

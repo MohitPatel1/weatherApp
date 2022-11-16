@@ -191,7 +191,7 @@ const loadHumidity = ({main:{humidity}}) => {
 // DOM content loaded
 
 document.addEventListener("DOMContentLoaded" , async () => {
-    getCurrentWeatherData();
+    getCurrentWeatherData(23.0216238 , 72.5797068);
     loadData();
 
     const searchInput = document.querySelector("#search");
