@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
             themeSwitcher.textContent = (document.body.classList.value === "light-theme") ? "Dark" : "Light" ;
     }
 
-    const themeSwitcher = document.getElementById("theme-change-button");
+    const themeSwitcher = document.querySelector(".theme-change-button");
     themeSwitcher.addEventListener("click" , switchTheme);
     // const themePreferenceDark = window.matchMedia("prefers-color-scheme: dark"); // try light instead
     // console.log(themePreferenceDark.matches);

@@ -183,8 +183,6 @@ width: min-content; */
 
 #theme{
     grid-area: theme;
-    width: 100%;
-    background-color: aqua;
     padding: 0;
 }
 
