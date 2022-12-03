@@ -45,7 +45,8 @@ body{
     "current current"
     "hourly hourly"
     "fiveday fiveday"
-    "feelslike humidity";
+    "feelslike humidity"
+    "theme theme";
     gap: var(--spacing-regular);
     align-items: center;
 }
@@ -146,9 +147,11 @@ width: min-content; */
 .per-day-forecast-container .min-temp{
     font-weight: var(--semi-bold) ;
     opacity: 75%;
+    justify-self: end;
 }
 .per-day-forecast-container .max-temp{
     font-weight: var(--semi-bold) ;
+    justify-self: end;
 }
 
 .per-day-forecast-container .day-of-forecast{
@@ -178,6 +181,23 @@ width: min-content; */
     height: 100%;
 }
 
+#theme{
+    grid-area: theme;
+    width: 100%;
+    background-color: aqua;
+    padding: 0;
+}
+
+.theme-change-button{
+    /* position: relative;
+    bottom: 16px;
+    right: 16px;  */
+    display: flex;
+    flex-direction: row;
+    justify-items: flex-end;
+    border-radius: 25%;
+}
+
 @media(width >= 800px){
     .container{
         grid-template-columns: repeat(4 , 1fr);
@@ -185,7 +205,8 @@ width: min-content; */
         "search search search search"
         "current current current current"
         "hourly hourly fiveday fiveday"
-        "feelslike humidity fiveday fiveday";
+        "feelslike humidity fiveday fiveday"
+        "theme theme theme theme";
     }
     body{
         max-width: calc(800px - (2 * var(--spacing-regular))); /* for margin in both sides */
