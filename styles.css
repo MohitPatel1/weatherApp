@@ -45,8 +45,7 @@ body{
     "current current"
     "hourly hourly"
     "fiveday fiveday"
-    "feelslike humidity"
-    "theme theme";
+    "feelslike humidity";
     gap: var(--spacing-regular);
     align-items: center;
 }
@@ -181,19 +180,26 @@ width: min-content; */
     height: 100%;
 }
 
+.main{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
 #theme{
-    grid-area: theme;
+    position: sticky;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    bottom: calc(4 * var(--spacing-regular));
     padding: 0;
 }
 
 .theme-change-button{
-    /* position: relative;
-    bottom: 16px;
-    right: 16px;  */
-    display: flex;
-    flex-direction: row;
-    justify-items: flex-end;
+    position: relative;
+    right: var(--spacing-regular);
     border-radius: 25%;
+    opacity: 75%;
 }
 
 @media(width >= 800px){
@@ -203,8 +209,7 @@ width: min-content; */
         "search search search search"
         "current current current current"
         "hourly hourly fiveday fiveday"
-        "feelslike humidity fiveday fiveday"
-        "theme theme theme theme";
+        "feelslike humidity fiveday fiveday";
     }
     body{
         max-width: calc(800px - (2 * var(--spacing-regular))); /* for margin in both sides */

@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const switchTheme = () => {
             document.body.classList.toggle("light-theme");
-            themeSwitcher.textContent = (document.body.classList.value === "light-theme") ? "Dark" : "Light" ;
+            const themeButton = document.querySelector(".theme-change-button")
+            console.log(themeButton.src);
+            themeButton.src = (document.body.classList.contains("light-theme")) ? "/images/toggle_light.png" : "/images/toggle_dark.png" ;
     }
 
     const themeSwitcher = document.querySelector(".theme-change-button");
@@ -14,6 +16,5 @@ document.addEventListener("DOMContentLoaded", () => {
     // }
     // else{
     // }
-        
-    themeSwitcher.textContent = (document.body.classList.value === "light-theme") ? "Dark" : "Light" ;
+
 })
