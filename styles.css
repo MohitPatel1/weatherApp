@@ -191,14 +191,18 @@ width: min-content; */
     display: flex;
     justify-content: flex-end;
     width: 100%;
-    bottom: calc(4 * var(--spacing-regular));
+    bottom: calc(4 * var(--spacing-regular) + 1px);
     padding: 0;
 }
 
 .theme-change-button{
     position: relative;
-    right: var(--spacing-regular);
-    border-radius: 25%;
+    border: 1px solid;
+    border-color: black;
+    /* border-radius: 25%; */
+    cursor: pointer;
+    right: calc( 2px + var(--spacing-regular));
+    border-radius: 60px;
     opacity: 75%;
 }
 
@@ -211,6 +215,7 @@ width: min-content; */
         "hourly hourly fiveday fiveday"
         "feelslike humidity fiveday fiveday";
     }
+
     body{
         max-width: calc(800px - (2 * var(--spacing-regular))); /* for margin in both sides */
     }
